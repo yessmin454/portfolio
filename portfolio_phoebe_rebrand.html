@@ -1,0 +1,444 @@
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --cream: #F7F4EE;
+    --ink: #1A1814;
+    --muted: #7A7268;
+    --gold: #B8955A;
+    --border: rgba(26,24,20,0.12);
+    --soft: #EDE8DF;
+  }
+  body {
+    font-family: 'DM Sans', 'Helvetica Neue', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    font-weight: 300;
+    line-height: 1.7;
+  }
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.6rem 3.5rem;
+    border-bottom: 0.5px solid var(--border);
+    background: var(--cream);
+  }
+  .logo {
+    font-family: Georgia, serif;
+    font-size: 1.25rem;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+  .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+  .nav-links a {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+  }
+
+  .hero {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    min-height: 86vh;
+    border-bottom: 0.5px solid var(--border);
+  }
+  .hero-left {
+    padding: 5rem 3.5rem 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    border-right: 0.5px solid var(--border);
+  }
+  .tag {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.8rem;
+  }
+  .hero-name {
+    font-family: Georgia, serif;
+    font-size: clamp(3rem, 5.5vw, 5rem);
+    font-weight: 400;
+    line-height: 1.0;
+    letter-spacing: -0.01em;
+    margin-bottom: 1.8rem;
+  }
+  .hero-name em { font-style: italic; color: var(--muted); }
+  .hero-sub {
+    font-size: 13.5px;
+    color: var(--muted);
+    max-width: 360px;
+    margin-bottom: 2.8rem;
+    line-height: 1.85;
+  }
+  .btn-row { display: flex; gap: 1rem; align-items: center; }
+  .btn-dark {
+    padding: 0.8rem 1.8rem;
+    background: var(--ink);
+    color: var(--cream);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+  }
+  .btn-ghost {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 0.5px solid var(--border);
+    padding-bottom: 2px;
+    background: none;
+    cursor: pointer;
+  }
+  .hero-right {
+    background: var(--soft);
+    display: flex;
+    align-items: flex-end;
+    padding: 2rem;
+    position: relative;
+  }
+  .hero-caption {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .hero-art {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-bottom: 0.5px solid var(--border);
+  }
+  .stat-cell {
+    padding: 2.5rem 3rem;
+    border-right: 0.5px solid var(--border);
+  }
+  .stat-cell:last-child { border-right: none; }
+  .stat-num {
+    font-family: Georgia, serif;
+    font-size: 2.8rem;
+    font-weight: 400;
+    line-height: 1;
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+  .stat-lbl { font-size: 12px; color: var(--muted); }
+
+  .projects-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 2.5rem 3.5rem 2rem;
+    border-bottom: 0.5px solid var(--border);
+  }
+  .section-title {
+    font-family: Georgia, serif;
+    font-size: 1.8rem;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+  .see-all {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    border-bottom: 0.5px solid var(--border);
+  }
+  .proj {
+    border-right: 0.5px solid var(--border);
+    cursor: pointer;
+    transition: background 0.18s;
+  }
+  .proj:last-child { border-right: none; }
+  .proj:hover { background: rgba(26,24,20,0.02); }
+  .proj-thumb {
+    height: 200px;
+    border-bottom: 0.5px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .t1 { background: #DDD5C5; }
+  .t2 { background: #C5D0D5; }
+  .t3 { background: #D5C5D0; }
+  .proj-body { padding: 1.4rem 1.6rem 1.8rem; }
+  .proj-type { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
+  .proj-name { font-family: Georgia, serif; font-size: 1.2rem; font-weight: 400; margin-bottom: 0.4rem; }
+  .proj-desc { font-size: 12.5px; color: var(--muted); line-height: 1.75; }
+
+  .team-section {
+    border-bottom: 0.5px solid var(--border);
+  }
+  .team-header {
+    padding: 2.5rem 3.5rem 2rem;
+    border-bottom: 0.5px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .member {
+    border-right: 0.5px solid var(--border);
+    padding: 2rem 1.8rem;
+    transition: background 0.18s;
+    cursor: pointer;
+  }
+  .member:last-child { border-right: none; }
+  .member:hover { background: rgba(26,24,20,0.02); }
+  .avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Georgia, serif;
+    font-size: 15px;
+    font-style: italic;
+    margin-bottom: 1rem;
+    border: 0.5px solid var(--border);
+  }
+  .av1 { background: #E8DFD0; color: #6B5840; }
+  .av2 { background: #D0DDE8; color: #3A5570; }
+  .av3 { background: #E8D0D8; color: #703A50; }
+  .av4 { background: #D0E8DC; color: #3A6050; }
+  .member-name { font-family: Georgia, serif; font-size: 1rem; font-weight: 400; margin-bottom: 0.2rem; }
+  .member-role { font-size: 11px; color: var(--muted); letter-spacing: 0.04em; margin-bottom: 0.8rem; }
+  .member-bio { font-size: 12px; color: var(--muted); line-height: 1.75; }
+
+  .contact-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: 0.5px solid var(--border);
+  }
+  .contact-left { padding: 3.5rem; border-right: 0.5px solid var(--border); }
+  .contact-right { padding: 3.5rem; }
+  .contact-title {
+    font-family: Georgia, serif;
+    font-size: 2.4rem;
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 1.2rem;
+  }
+  .contact-title em { font-style: italic; color: var(--muted); }
+  .contact-sub { font-size: 13px; color: var(--muted); margin-bottom: 1.6rem; line-height: 1.8; }
+  .contact-email {
+    font-family: Georgia, serif;
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 0.5px solid var(--border);
+    padding-bottom: 2px;
+  }
+  .social-list { margin-top: 0; display: flex; flex-direction: column; }
+  .social-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.9rem 0;
+    border-bottom: 0.5px solid var(--border);
+    font-size: 12.5px;
+    color: var(--muted);
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .social-item:hover { color: var(--ink); }
+
+  footer {
+    padding: 1.4rem 3.5rem;
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+  }
+</style>
+
+<nav>
+  <a href="#" class="logo">Phoebe Larsen</a>
+  <ul class="nav-links">
+    <li><a href="#">Projets</a></li>
+    <li><a href="#">Équipe</a></li>
+    <li><a href="#">Services</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <p class="tag">Directrice créative & Stratège</p>
+    <h1 class="hero-name">Phoebe<br><em>Larsen</em></h1>
+    <p class="hero-sub">Je conçois des univers visuels cohérents pour des marques qui ont quelque chose à dire. Direction artistique, identité, expérience numérique — du concept à la livraison.</p>
+    <div class="btn-row">
+      <button class="btn-dark" onclick="sendPrompt('Montre-moi les projets de Phoebe en détail')">Voir mes projets ↗</button>
+      <button class="btn-ghost" onclick="sendPrompt('Je veux contacter Phoebe')">Me contacter</button>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-art">
+      <svg width="280" height="360" viewBox="0 0 280 360" fill="none">
+        <rect x="40" y="30" width="200" height="280" rx="1" fill="#D4C8B8"/>
+        <rect x="60" y="50" width="200" height="280" rx="1" fill="#C4B8A4" opacity="0.5"/>
+        <ellipse cx="140" cy="170" rx="55" ry="70" fill="#B4A890"/>
+        <rect x="90" y="120" width="100" height="100" rx="1" fill="none" stroke="#9A8870" stroke-width="0.6"/>
+        <line x1="40" y1="170" x2="240" y2="170" stroke="#9A8870" stroke-width="0.5"/>
+        <line x1="140" y1="30" x2="140" y2="310" stroke="#9A8870" stroke-width="0.5"/>
+        <text x="140" y="335" text-anchor="middle" font-family="Georgia, serif" font-size="10" fill="#7A6A58" letter-spacing="5" font-style="italic">Paris</text>
+      </svg>
+    </div>
+    <p class="hero-caption">Studio — Paris, 2024</p>
+  </div>
+</section>
+
+<div class="stats-row">
+  <div class="stat-cell">
+    <span class="stat-num">8+</span>
+    <span class="stat-lbl">Années d'expérience</span>
+  </div>
+  <div class="stat-cell">
+    <span class="stat-num">42</span>
+    <span class="stat-lbl">Projets livrés</span>
+  </div>
+  <div class="stat-cell">
+    <span class="stat-num">4</span>
+    <span class="stat-lbl">Créatifs dans l'équipe</span>
+  </div>
+  <div class="stat-cell">
+    <span class="stat-num">3</span>
+    <span class="stat-lbl">Prix de design reçus</span>
+  </div>
+</div>
+
+<div>
+  <div class="projects-header">
+    <h2 class="section-title">Projets sélectionnés</h2>
+    <a href="#" class="see-all">Tout voir →</a>
+  </div>
+  <div class="projects-grid">
+    <div class="proj">
+      <div class="proj-thumb t1">
+        <svg width="100" height="70" viewBox="0 0 100 70" fill="none">
+          <rect x="15" y="10" width="70" height="50" rx="1" fill="#C0B09C"/>
+          <rect x="25" y="18" width="50" height="30" rx="1" fill="#A89880"/>
+          <line x1="15" y1="40" x2="85" y2="40" stroke="#8A7860" stroke-width="0.5"/>
+        </svg>
+      </div>
+      <div class="proj-body">
+        <p class="proj-type">Identité de marque</p>
+        <h3 class="proj-name">Maison Varel</h3>
+        <p class="proj-desc">Refonte d'identité pour une maison de parfumerie indépendante — logo, charte, packaging et éditions limitées.</p>
+      </div>
+    </div>
+    <div class="proj">
+      <div class="proj-thumb t2">
+        <svg width="100" height="70" viewBox="0 0 100 70" fill="none">
+          <circle cx="50" cy="35" r="24" fill="#A0B8C4"/>
+          <circle cx="50" cy="35" r="14" fill="#7A9CAC"/>
+          <circle cx="50" cy="35" r="5" fill="#5A7A8C"/>
+        </svg>
+      </div>
+      <div class="proj-body">
+        <p class="proj-type">UX / Interface</p>
+        <h3 class="proj-name">Lumino App</h3>
+        <p class="proj-desc">Application de bien-être mental — recherche utilisateur, architecture d'information, design system complet.</p>
+      </div>
+    </div>
+    <div class="proj">
+      <div class="proj-thumb t3">
+        <svg width="100" height="70" viewBox="0 0 100 70" fill="none">
+          <rect x="20" y="12" width="60" height="46" rx="1" fill="#C0A8B4"/>
+          <rect x="30" y="20" width="40" height="7" rx="0.5" fill="#A08898"/>
+          <rect x="34" y="33" width="32" height="4" rx="0.5" fill="#A08898" opacity="0.6"/>
+          <rect x="38" y="43" width="24" height="4" rx="0.5" fill="#A08898" opacity="0.4"/>
+        </svg>
+      </div>
+      <div class="proj-body">
+        <p class="proj-type">Web design</p>
+        <h3 class="proj-name">Galerie Nuit</h3>
+        <p class="proj-desc">Site éditorial pour une galerie d'art contemporain — typographie expressive, animations légères, intégration CMS.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="team-section">
+  <div class="team-header">
+    <h2 class="section-title">L'équipe</h2>
+    <a href="#" class="see-all">Travailler avec nous →</a>
+  </div>
+  <div class="team-grid">
+    <div class="member">
+      <div class="avatar av1">PL</div>
+      <p class="member-name">Phoebe Larsen</p>
+      <p class="member-role">Direction créative</p>
+      <p class="member-bio">Spécialisée en identité de marque et direction artistique. Diplômée des Arts Déco de Paris.</p>
+    </div>
+    <div class="member">
+      <div class="avatar av2">NK</div>
+      <p class="member-name">Noah Keller</p>
+      <p class="member-role">Développeur front-end</p>
+      <p class="member-bio">Expert React & animations web. Transforme les designs en interfaces qui respirent.</p>
+    </div>
+    <div class="member">
+      <div class="avatar av3">IB</div>
+      <p class="member-name">Iris Beaumont</p>
+      <p class="member-role">Designer UX</p>
+      <p class="member-bio">Spécialisée en recherche utilisateur et design de systèmes. Passionnée par l'accessibilité.</p>
+    </div>
+    <div class="member">
+      <div class="avatar av4">LM</div>
+      <p class="member-name">Luca Moreau</p>
+      <p class="member-role">Stratège de marque</p>
+      <p class="member-bio">Dix ans en conseil de marque pour des clients du luxe, de la culture et de la tech.</p>
+    </div>
+  </div>
+</section>
+
+<section class="contact-section">
+  <div class="contact-left">
+    <h2 class="contact-title">Travaillons<br><em>ensemble</em></h2>
+    <p class="contact-sub">Un projet ambitieux ? Nous serions ravies d'en discuter. Nous acceptons trois missions par trimestre.</p>
+    <a href="mailto:phoebe@larsenstudio.fr" class="contact-email">phoebe@larsenstudio.fr</a>
+  </div>
+  <div class="contact-right">
+    <p class="tag" style="margin-bottom: 1rem;">Nous suivre</p>
+    <div class="social-list">
+      <a href="#" class="social-item"><span>LinkedIn</span><span>↗</span></a>
+      <a href="#" class="social-item"><span>Instagram</span><span>↗</span></a>
+      <a href="#" class="social-item"><span>Behance</span><span>↗</span></a>
+      <a href="#" class="social-item"><span>Dribbble</span><span>↗</span></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2024 Phoebe Larsen Studio</span>
+  <span>Paris, France — Freelance & missions longue durée</span>
+</footer>
